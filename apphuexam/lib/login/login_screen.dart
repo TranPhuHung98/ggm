@@ -40,11 +40,11 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   String changeString(String email) {
-    // String em = email.replaceRange(email.length - 4, email.length - 3, '_');
-    email = 'sjdksjgfkjgfdsfg.sdew.greg.......@gmail.com';
-    email.replaceAll(RegExp(r'.'), '_') ;
-    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: $email');
-    return email;
+    String em = email ;
+     for(int i =0 ; i < em.length; i ++ )
+      if(em[i] == '.')
+        em = em.replaceRange(i,i+1, '_');
+    return em;
   }
 
   final GoogleSignIn googleSignIn = new GoogleSignIn();
@@ -115,24 +115,6 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     Column(
                       children: <Widget>[
-                    //     Container(
-                    //   child: Material(
-                    //     child: RaisedButton(
-                    //         padding: EdgeInsets.only(
-                    //             left: 60.0, right: 60.0, top: 0.0, bottom: 0.0),
-                    //         color: Colors.blue,
-                    //         child: Text(
-                    //           'Sign in with FaceBook',
-                    //           style: TextStyle(
-                    //               color: Colors.white, fontSize: 15.0),
-                    //         ),
-                    //         onPressed: () {
-                    //           _handleSignInFB();
-                    //         },
-                    //         shape: new RoundedRectangleBorder(
-                    //             borderRadius: new BorderRadius.circular(15.0))),
-                    //   ),
-                    // ),
                     Container(
                       child: Material(
                         child: RaisedButton(

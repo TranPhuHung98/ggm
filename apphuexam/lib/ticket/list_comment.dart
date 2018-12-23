@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:stdio/see_image.dart';
+import 'package:stdio/watch_image_screen.dart';
 
 class CommentItem extends StatefulWidget {
   DataSnapshot dataSnapshot;
@@ -26,10 +26,7 @@ class CommentItemState extends State<CommentItem> {
               backgroundImage:
                   NetworkImage(dataSnapshot.value['senderPhotoUrl']),
             )),
-        // Container(
-        //   margin: EdgeInsets.all(5.0),
-        //   child:Text('${widget.dataSnapshot.value['timePost']}',style: TextStyle(fontWeight: FontWeight.bold),),
-        // ),
+
         dataSnapshot.value['type'] == 1
             ? Flexible(
                 child: Container(
@@ -46,10 +43,11 @@ class CommentItemState extends State<CommentItem> {
               ))
             : Container(
                 child: GestureDetector(
+                  
                   onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => WatchImageScreen(
-                                  url: dataSnapshot.value['content'],
+                                  url:  dataSnapshot.value['content'],
                                 )));
                   },
                     child: Image.network(

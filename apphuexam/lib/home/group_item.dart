@@ -39,8 +39,8 @@ class _GroupItemState extends State<GroupItem> {
                 width: 20.0,
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(widget.groupName,
@@ -53,7 +53,7 @@ class _GroupItemState extends State<GroupItem> {
           ),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => GroupScreen(groupId: widget.groupId,groupName: widget.groupName,user: widget.user,)));
+                builder: (_) => GroupScreen(groupId: widget.groupId,groupName: widget.groupName,user: widget.user,groupAvatar: widget.avatar,)));
           },
         ),
         Divider(

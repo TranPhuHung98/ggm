@@ -3,14 +3,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:stdio/chat/chat_screen.dart';
+import 'package:stdio/edit_group_screen.dart';
 import 'package:stdio/ticket/post_model.dart';
 import 'package:stdio/ticket/post_status.dart';
 
 class GroupScreen extends StatefulWidget {
   String groupId;
   String groupName;
+  String groupAvatar;
   FirebaseUser user;
-  GroupScreen({Key key, this.groupId, this.groupName, this.user})
+  GroupScreen({Key key, this.groupId, this.groupName, this.user,this.groupAvatar})
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -45,18 +47,26 @@ class GroupScreenState extends State<GroupScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     var listPost = FirebaseDatabase.instance
-                    .reference()
-                    .child('Group')
-                    .child('${widget.groupId}')
-                    .child('post');
+        .reference()
+        .child('Group')
+        .child('${widget.groupId}')
+        .child('post');
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.groupName),
-        centerTitle: true,
+        centerTitle: false,
         backgroundColor: Colors.blue,
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => SettingGrpScreen(
+                      grpName: widget.groupName,
+                      grpAvatar: widget.groupAvatar,
+                      grpId: widget.groupId,
+                    ))),
+          ),
           IconButton(
             icon: Icon(Icons.chat),
             onPressed: () {
@@ -87,7 +97,7 @@ class GroupScreenState extends State<GroupScreen> {
                   return PostModel(
                     dataSnaphot: dataSnapshot,
                     animation: animation,
-                    groupName:widget.groupName,
+                    groupName: widget.groupName,
                     groupId: widget.groupId,
                   );
                 },
@@ -106,8 +116,12 @@ class GroupScreenState extends State<GroupScreen> {
               color: Colors.blueAccent[100],
               child: Text('Post Status'),
               onPressed: () {
-                 Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => PostStatus(groupId: widget.groupId,groupName : widget.groupName,user: widget.user,)));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => PostStatus(
+                          groupId: widget.groupId,
+                          groupName: widget.groupName,
+                          user: widget.user,
+                        )));
               },
               shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(15.0))),

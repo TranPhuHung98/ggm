@@ -18,8 +18,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  String changeString(String email) {
-    String em = email.replaceRange(email.length - 4, email.length - 3, '_');
+     String changeString(String email) {
+    String em = email ;
+     for(int i =0 ; i < em.length; i ++ )
+      if(em[i] == '.')
+        em = em.replaceRange(i,i+1, '_');
     return em;
   }
 

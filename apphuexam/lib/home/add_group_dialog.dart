@@ -25,7 +25,6 @@ class AddGroupDialogState extends State<AddGroupDialog> {
         children: <Widget>[
           new Expanded(
               child: new TextField(
-               obscureText : true,
             autofocus: true,
             decoration: new InputDecoration(
                 labelText: "Group Name", hintText: "Group Name"),

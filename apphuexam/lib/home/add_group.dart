@@ -3,10 +3,12 @@ import 'package:firebase_database/firebase_database.dart';
 
 class AddGroup {
   void onAddGroup(String groupName, FirebaseUser user) {
-      String changeString(String email){
-    String em = email. replaceRange(email.length-4, email.length-3, '_');
-    print(email);
-    return em ;
+          String changeString(String email) {
+    String em = email ;
+     for(int i =0 ; i < em.length; i ++ )
+      if(em[i] == '.')
+        em = em.replaceRange(i,i+1, '_');
+    return em;
   }
     if (groupName != '') {
       int dateCreate = DateTime.now().millisecondsSinceEpoch ;

@@ -3,10 +3,12 @@ import 'package:firebase_database/firebase_database.dart';
 class AddUser {
   void onAddUser(String email, String groupId, String groupName,bool isJoined) {
     String changeString(String email) {
-      String em = email.replaceRange(email.length - 4, email.length - 3, '_');
-      print(email);
-      return em;
-    }
+    String em = email ;
+     for(int i =0 ; i < em.length; i ++ )
+      if(em[i] == '.')
+        em = em.replaceRange(i,i+1, '_');
+    return em;
+  }
     isJoined =true ;
     FirebaseDatabase.instance
         .reference()

@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:stdio/see_image.dart';
+import 'package:stdio/watch_image_screen.dart';
 
 var currentUserEmail;
 
